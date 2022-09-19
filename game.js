@@ -13,13 +13,21 @@ $(document).keydown(function () {
     }
 });
 
-$(".button").click(function () {
-    if(!started){
-        $("#level-title").text("Level " + level);
-        nextSequence();
-        started = true;
-    }
-});
+function is_touch_enabled() {
+    return ( 'ontouchstart' in window ) ||
+           ( navigator.maxTouchPoints > 0 ) ||
+           ( navigator.msMaxTouchPoints > 0 );
+}
+
+if ( is_touch_enabled() ){
+    $(".button").click(function () {
+        if(!started){
+            $("#level-title").text("Level " + level);
+            nextSequence();
+            started = true;
+        }
+    });
+}
 
 $(".btn").click(function () {
     var userChosenColour = $(this).attr("id");
